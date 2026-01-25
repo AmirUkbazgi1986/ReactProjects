@@ -1,0 +1,26 @@
+.appNav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background-color: var(--color-dark--2);
+  border-radius: 10px;
+  overflow: hidden;
+  /* padding: 0rem 2rem; */
+}
+.appNav a:link,
+.appNav a:visited {
+  flex: 1;
+  padding: 0.8rem 1.6rem;
+  color: var(--color-light--1);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.appNav a:global(.active) {
+  background-color: var(--color-dark--0);
+  color: var(--color-light--3);
+  border-radius: 10px;
+}

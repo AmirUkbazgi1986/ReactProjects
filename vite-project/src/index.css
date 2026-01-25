@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #bc4123;
+  --secondary: #2b3452;
+  --text-color: #fff;
+  --text-secondary-color: #bbb;
+}
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 2rem;
+  background: var(--secondary);
+  color: var(--text-color);
+  font-family: "Roboto", sans-serif;
+  font-size: 2rem;
+  line-height: 1.5;
+}
+p {
+  margin: 2rem 0;
+}
+a {
+  color: var(--text-color);
+}
+button {
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  color: var(--text-color);
+  background: var(--primary);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* navbar */
+header nav {
+  display: flex;
+  gap: 1.6rem;
+  justify-content: end;
+  align-items: center;
+  max-width: 120rem;
+  width: 100%;
+  margin: 0 auto;
+}
+header nav h1 {
+  margin-right: auto;
+  border-bottom: 3px solid var(--primary);
+}
+header nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 4px;
+}
+header nav a.active {
+  background: var(--primary);
+}
+
+/* page content */
+main {
+  max-width: 120rem;
+  width: 100%;
+  margin: 4rem auto;
+}
+
+/* help layout */
+.help-layout nav {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+.help-layout nav a {
+  padding: 1rem;
+  border: 2px solid var(--text-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  text-decoration: none;
+}
+.help-layout nav a:hover {
+  border-color: var(--primary);
+}
+.help-layout nav a.active {
+  background: var(--primary);
+}
+/* faq */
+.faq .question {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 2rem;
+  border-radius: 4px;
+  margin: 2rem 0;
+}
+/* contact form */
+form {
+  margin-top: 3rem;
+}
+form input,
+form span,
+form textarea {
+  display: block;
+}
+form input,
+form textarea {
+  margin-bottom: 3rem;
+  padding: 0.8rem;
+  border-radius: 4px;
+  border: 0;
+  width: 30rem;
+  color: var(--secondary);
+}
+form label span {
+  margin-bottom: 1rem;
+}
+/* careers list */
+.careers > a {
+  display: block;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 4px;
+  margin: 2rem 0;
+  text-decoration: none;
+}
+.careers > a:hover p {
+  color: var(--primary);
+}
+.careers p {
+  margin: 0;
+}
+.careers > a p:last-child {
+  font-size: 1.6rem;
+  color: var(--text-secondary-color);
+}
+
+/* careers details */
+.career-details {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: 4px;
+  margin: 2rem 0;
+}
+
+/* breadcrumbs */
+.breadcrumbs {
+  max-width: 120rem;
+  width: 100%;
+  margin: 2rem auto;
+}
+
+.breadcrumbs > * {
+  display: inline-block;
+  margin-right: 1rem;
+}
+.breadcrumbs .crumb::after {
+  content: ">";
+  margin-left: 1rem;
+}
+.breadcrumbs .crumb:last-child::after {
+  display: none;
+}
+.breadcrumbs .crumb a {
+  color: #ddd;
+}

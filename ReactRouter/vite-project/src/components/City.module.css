@@ -1,0 +1,36 @@
+.city {
+  width: 100%;
+  background-color: var(--color-dark--2);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 3rem;
+}
+.row h6 {
+  font-size: 1.4rem;
+  color: var(--color-light--1);
+}
+.row h3 {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.6rem;
+  color: var(--color-light--3);
+}
+.row h3 img {
+  width: 6rem;
+  height: 3rem;
+}
+.row p {
+  font-size: 1.4rem;
+  color: var(--color-light--3);
+}
+.row a {
+  /* text-decoration: none; */
+  font-size: 1.4rem;
+  color: var(--color-brand--1);
+}

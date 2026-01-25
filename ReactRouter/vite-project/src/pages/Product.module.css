@@ -1,0 +1,32 @@
+.product {
+  height: calc(100vh - 5rem);
+  margin: 2.5rem;
+  padding: 2.5rem 5rem;
+  background: var(--color-dark--0);
+}
+.product section {
+  height: 70%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8rem;
+  margin: 5rem;
+}
+.image {
+  grid-column: 1/2;
+}
+.image img {
+  width: 100%;
+  object-fit: cover;
+}
+.info {
+  width: 100%;
+  text-align: left;
+}
+.info h1 {
+  font-size: 4.8rem;
+  margin-bottom: 2rem;
+}
+.info p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}

@@ -20,12 +20,25 @@ function reducer(state, action) {
     case "added_item": {
       return [...state, action.payLoad];
     }
+
     case "removed_item": {
-      return { ...state, hobby: action.payLoad };
+      console.log(action.payLoad);
+      const filterState = state.filter(
+        (item) => item.itemId !== action.payLoad,
+      );
+      console.log(filterState);
+      return filterState;
     }
+
     case "checked_off_item": {
-      return { ...state, checked: action.payLoad };
+      const newState = state.map((item) =>
+        item.itemId === action.payLoad
+          ? { ...item, checked: !item.checked }
+          : item,
+      );
+      return newState;
     }
+
     default:
       throw new Error("something is not good!");
   }
@@ -34,7 +47,6 @@ function reducer(state, action) {
 function App() {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [checked, setChecked] = useState(false);
 
   const [items, dispatch] = useReducer(reducer, shoppingListState);
 
@@ -46,8 +58,8 @@ function App() {
     setQuantity(e.target.value);
   }
 
-  function handleCheckBoxChange(e) {
-    setChecked(e.target.checked);
+  function handleCheckBoxChange(id) {
+    dispatch({ type: "checked_off_item", payLoad: id });
   }
 
   function handleSubmit(e) {
@@ -61,6 +73,8 @@ function App() {
     };
     console.log(newItem.name);
     dispatch({ type: "added_item", payLoad: newItem });
+    setName("");
+    setQuantity(1);
   }
 
   function handleClick(id) {
@@ -96,18 +110,24 @@ function App() {
           className="bg-lime-50 py-3 px-6 rounded-full"
         />
 
-        <button className="bg-blue-200 py-2 px-4 rounded-lg cursor-pointer">
+        <button
+          type="submit"
+          className="bg-blue-200 py-2 px-4 rounded-lg cursor-pointer"
+        >
           Add
         </button>
       </form>
 
       <ul className=" w-3xl min-h-4xl bg-amber-900 p-5 flex flex-row flex-wrap gap-8">
         {items?.map((list) => (
-          <li key={list.itemId} className="flex flex-row gap-2">
+          <li
+            key={list.itemId}
+            className={`${list.checked ? "line-through" : null} flex flex-row gap-2`}
+          >
             <input
               type="checkbox"
-              checked={checked}
-              onChange={handleCheckBoxChange}
+              checked={list.checked}
+              onChange={() => handleCheckBoxChange(list.itemId)}
             />
             <p className="text-orange-200 text-lg">{list.quantity}</p>
             <p className="text-orange-200 text-lg">{list.name}</p>

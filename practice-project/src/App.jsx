@@ -1,146 +1,115 @@
-import { use, useReducer, useState } from "react";
+import { useReducer } from "react";
 
-const shoppingListState = [
-  {
-    name: "broccoli",
-    quantity: 1,
-    checked: false,
-    itemId: 1,
-  },
-  {
-    name: "apples",
-    quantity: 2,
-    checked: false,
-    itemId: 2,
-  },
-];
+const initialState = {
+  email: "",
+  password: "",
 
-function reducer(state, action) {
+  loading: false,
+  error: null,
+};
+
+function emailReducer(state, action) {
   switch (action.type) {
-    case "added_item": {
-      return [...state, action.payLoad];
+    case "SET_EMAIL": {
+      return { ...state, email: action.payload };
     }
 
-    case "removed_item": {
-      console.log(action.payLoad);
-      const filterState = state.filter(
-        (item) => item.itemId !== action.payLoad,
-      );
-      console.log(filterState);
-      return filterState;
+    case "SET_PASSWORD": {
+      return { ...state, password: action.payload };
     }
 
-    case "checked_off_item": {
-      const newState = state.map((item) =>
-        item.itemId === action.payLoad
-          ? { ...item, checked: !item.checked }
-          : item,
-      );
-      return newState;
+    case "SUBMIT": {
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
     }
 
+    case "SUCCESS": {
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+    }
+
+    case "ERROR": {
+      return {
+        ...state,
+        loading: false,
+        error: "inValid email or password",
+      };
+    }
     default:
-      throw new Error("something is not good!");
+      throw new Error("somthing went wrong!");
   }
 }
-
 function App() {
-  const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState(1);
-
-  const [items, dispatch] = useReducer(reducer, shoppingListState);
-
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleQuantityChange(e) {
-    setQuantity(e.target.value);
-  }
-
-  function handleCheckBoxChange(id) {
-    dispatch({ type: "checked_off_item", payLoad: id });
-  }
+  const [state, dispatch] = useReducer(emailReducer, initialState);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const newItem = {
-      name,
-      quantity,
-      checked: false,
-      itemId: crypto.randomUUID(),
-    };
-    console.log(newItem.name);
-    dispatch({ type: "added_item", payLoad: newItem });
-    setName("");
-    setQuantity(1);
+    dispatch({
+      type: "SUBMIT",
+    });
+
+    if (state.email === "admin@test.com" && state.password === "admin1986") {
+      setTimeout(() => {
+        dispatch({ type: "SUCCESS" });
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        dispatch({ type: "ERROR" });
+      }, 1000);
+    }
   }
 
-  function handleClick(id) {
-    dispatch({ type: "removed_item", payLoad: id });
-  }
-
+  console.log(state);
   return (
-    <div className="flex flex-col justify-center items-center  bg-green-200 w-screen h-screen">
-      <h1 className="text-3xl font-bold mb-4">Shopping List Items</h1>
-
+    <div className="flex flex-col justify-center items-center  bg-green-200 w-screen min-h-screen">
+      <h1 className="text-3xl font-bold mb-4">Login Form State Manager</h1>
       <form
-        className=" flex flex-row gap-8 items-center justify-center bg-orange-200 w-3xl p-3"
-        onSubmit={handleSubmit}
+        className="max-w-2xl bg-gray-200 py-2 px-6 flex flex-col gap-4"
+        onSubmit={(e) => handleSubmit(e)}
       >
-        <select
-          name="quantity"
-          id="name"
-          className="bg-lime-50 py-3 px-6 rounded-full"
-          value={quantity}
-          onChange={handleQuantityChange}
-        >
-          {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
-            <option key={num} value={num}>
-              {num}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleNameChange}
-          className="bg-lime-50 py-3 px-6 rounded-full"
-        />
-
+        <label>
+          Email:
+          <input
+            type="email"
+            className="bg-white px-4 py-2 ml-4 "
+            value={state.email}
+            onChange={(e) =>
+              dispatch({ type: "SET_EMAIL", payload: e.target.value })
+            }
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            className="bg-white px-4 py-2 ml-4 "
+            value={state.password}
+            onChange={(e) =>
+              dispatch({ type: "SET_PASSWORD", payload: e.target.value })
+            }
+          />
+        </label>
         <button
           type="submit"
-          className="bg-blue-200 py-2 px-4 rounded-lg cursor-pointer"
+          className="py-1 px-3 bg-red-300 cursor-pointer rounded-md text-xl font-semibold"
         >
-          Add
+          Submit
         </button>
       </form>
-
-      <ul className=" w-3xl min-h-4xl bg-amber-900 p-5 flex flex-row flex-wrap gap-8">
-        {items?.map((list) => (
-          <li
-            key={list.itemId}
-            className={`${list.checked ? "line-through" : null} flex flex-row gap-2`}
-          >
-            <input
-              type="checkbox"
-              checked={list.checked}
-              onChange={() => handleCheckBoxChange(list.itemId)}
-            />
-            <p className="text-orange-200 text-lg">{list.quantity}</p>
-            <p className="text-orange-200 text-lg">{list.name}</p>
-            <button
-              type="submit"
-              className="py-1 px-4 bg-red-100 rounded-full cursor-pointer"
-              onClick={() => handleClick(list.itemId)}
-            >
-              X
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="text-2xl ">
+        {state.loading && <p className="text-2xl "> Loading ....</p>}
+        {state.loading === false && state.error === null && (
+          <p className="text-2xl ">Login Successfully</p>
+        )}
+        {state.error !== null && <p className="text-2xl ">{state.error}</p>}
+      </div>
     </div>
   );
 }

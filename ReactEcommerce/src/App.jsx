@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
+import { AuthProvider } from "./Context/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

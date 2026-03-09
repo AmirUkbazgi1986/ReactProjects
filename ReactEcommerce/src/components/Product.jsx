@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 function Product({ product }) {
   return (
-    <div className="bg-[#fff] rounded-lg overflow-hidden shadow-[0 2px 8px rgba(0,0,0,0.1)]transition-transform duration-[0.2s] transition-shadow duration-[0.2s] hover:transform-[translateY(-4px)] hover: shadow-[0 4px 12px rgba(0,0,0,0.15)]">
+    <div className="bg-[#fff] rounded-lg overflow-hidden shadow-[0 2px 8px rgba(0,0,0,0.1)]transition-transform duration-[0.2s] transition-shadow duration-[0.2s] hover:transform-[translateY(-4px)] hover: shadow-[0_4px_8px_rgba(0,0,0,0.15)]">
       <img
         src={product.image}
         alt={product.name}

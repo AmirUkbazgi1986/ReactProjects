@@ -4,7 +4,6 @@ import { useAuth } from "../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Auth() {
-  const [mode, setMode] = useState("signup");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const {
@@ -13,7 +12,7 @@ function Auth() {
     formState: { errors },
   } = useForm();
 
-  const { signUp, user, logout, login } = useAuth();
+  const { signUp, login, mode, setMode } = useAuth();
 
   function onSubmit(data) {
     setError(null);
@@ -33,8 +32,6 @@ function Auth() {
     <div className="flex-[1] py-8 px-0">
       <div className="max-w-[1200px] my-0 mx-auto py-0 px-8">
         <div className="max-w-[400px] my-0 mx-auto bg-[#fff] py-8 px-8 rounded-lg  shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
-          {user && <p>user logge in :{user.email}</p>}
-          <button onClick={() => logout()}>logout</button>
           <h1 className="text-[2rem] mb-8 text-[#333]">
             {mode === "signup" ? "Sign Up" : "Login"}
           </h1>

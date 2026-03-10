@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
+import ProductDetails from "./pages/ProductDetails";
 import { AuthProvider } from "./Context/AuthContext";
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/checkout",
         Component: Checkout,
+      },
+      {
+        path: "/product/:id",
+        Component: ProductDetails,
       },
       {
         path: "*",

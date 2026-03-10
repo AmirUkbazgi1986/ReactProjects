@@ -8,7 +8,7 @@ function AuthProvider({ children }) {
       ? { email: localStorage.getItem("currentUserEmail") }
       : null,
   );
-
+  const [mode, setMode] = useState("signup");
   function signUp(email, password) {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     if (users.find((u) => u.email === email)) {
@@ -38,7 +38,9 @@ function AuthProvider({ children }) {
     setUser(null);
   }
   return (
-    <AuthContext.Provider value={{ signUp, user, login, logout }}>
+    <AuthContext.Provider
+      value={{ signUp, user, login, logout, mode, setMode }}
+    >
       {children}
     </AuthContext.Provider>
   );

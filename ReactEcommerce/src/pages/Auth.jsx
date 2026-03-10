@@ -1,29 +1,49 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Auth() {
   const [mode, setMode] = useState("signup");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const { signUp, user } = useAuth();
+  const { signUp, user, logout, login } = useAuth();
 
   function onSubmit(data) {
-    signUp(data.email, data.password);
+    setError(null);
+    let result;
+    if (mode === "signup") {
+      result = signUp(data.email, data.password);
+    } else {
+      result = login(data.email, data.password);
+    }
+    if (result.success) {
+      navigate("/");
+    } else {
+      setError(result.error);
+    }
   }
   return (
     <div className="flex-[1] py-8 px-0">
       <div className="max-w-[1200px] my-0 mx-auto py-0 px-8">
         <div className="max-w-[400px] my-0 mx-auto bg-[#fff] py-8 px-8 rounded-lg  shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
           {user && <p>user logge in :{user.email}</p>}
+          <button onClick={() => logout()}>logout</button>
           <h1 className="text-[2rem] mb-8 text-[#333]">
             {mode === "signup" ? "Sign Up" : "Login"}
           </h1>
           <form action="" className="mt-8" onSubmit={handleSubmit(onSubmit)}>
+            {error && (
+              <div className="bg-[#f8d7da] text-[#721c24] py-3 px-3 rounded-sm mb-4 border border-[#f5c6c6]">
+                {error}
+              </div>
+            )}
             <div className="mb-6">
               <label
                 htmlFor="email"
@@ -36,7 +56,7 @@ function Auth() {
                 id="email"
                 name="email"
                 {...register("email", { required: "Email is required" })}
-                className="w-full py-3 px-3 borde-[1px] border border-[#ddd]  rounded-sm text-base transition-border-color duration-[0.2s] focus: border-[007bff] focus:outline-none "
+                className="w-full py-3 px-3  border border-[#ddd]  rounded-sm text-base transition-[border-color] duration-[0.2s] focus:border-[#007bff] focus:outline-none "
               />
               {errors.email && (
                 <span className="block text-[#dc3545] text-sm mt-1">
@@ -66,7 +86,7 @@ function Auth() {
                     message: "Password must be less than 12 characters",
                   },
                 })}
-                className="w-full py-3 px-3 borde-[1px] border border-[#ddd] rounded-sm text-base transition-border-color duration-[0.2s] focus: border-[007bff] focus:outline-none "
+                className="w-full py-3 px-3  border border-[#ddd] rounded-sm text-base transition-[border-color] duration-[0.2s] focus:border-[#007bff] focus:outline-none "
               />
               {errors.password && (
                 <span className="block text-[#dc3545] text-sm mt-1">

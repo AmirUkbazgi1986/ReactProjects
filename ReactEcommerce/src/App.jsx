@@ -7,6 +7,7 @@ import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import ProductDetails from "./pages/ProductDetails";
 import { AuthProvider } from "./Context/AuthContext";
+import { CartProvider } from "./Context/CartContext";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
   );
 }

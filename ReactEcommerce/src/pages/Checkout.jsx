@@ -12,7 +12,6 @@ function Checkout() {
   const total = getCartTotal();
 
   function placeOrder() {
-    console.log("hey");
     alert("Successful Order!");
     clearCart();
   }
@@ -21,18 +20,20 @@ function Checkout() {
     <div className="grow py-8 px-0">
       <div className="max-w-[1200px] my-0 mx-auto py-0 px-8">
         <h1 className="text-[2rem] mb-8 text-[#333]">Checkout</h1>
-        <div className="grid grid-cols-[2fr_1fr] gap-8 mt-8">
+        <div className="grid grid-col-1 md:grid-cols-[2fr_1fr] gap-8 mt-8">
           <div className="bg-[#fff] py-8 px-8 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
-            <h2 className="text-2xl mb-[1.5rem] text-[#333]">Order Summary</h2>
+            <h2 className="text-center md:text-right text-2xl mb-[1.5rem] text-[#333]">
+              Order Summary
+            </h2>
             {cartItems.map((item) => (
               <div
-                className="flex gap-4 py-6 px-0 border-b border-b-[#eee] last:border-b-[0]"
+                className=" flex flex-col items-center md:flex-row gap-4 py-6 px-0 border-b border-b-[#eee] last:border-b-[0]"
                 key={item.id}
               >
                 <img
                   src={item.product.image}
                   alt={item.product.name}
-                  className="w-[100px] h-[100px] object-cover rounded-lg "
+                  className="w-full h-[200px] md:w-[100px] md:h-[100px] object-cover rounded-lg "
                 />
                 <div className="grow ">
                   <h3 className="text-[1.1rem] mb-2 text-[#333]">
@@ -42,7 +43,7 @@ function Checkout() {
                     {item.product.price} each
                   </p>
                 </div>
-                <div className="flex flex-col items-end gap-2">
+                <div className="flex flex-col items-start md:items-end gap-2">
                   <div className="flex items-center gap-2">
                     <button
                       className="w-[32px] h-[32px] border border-[#ddd] bg-[#fff] rounded-lg cursor-pointer text-[1.2rem] flex items-center justify-center transition-bg-color duration-[0.2s] hover:bg-[#f5f5f5]"

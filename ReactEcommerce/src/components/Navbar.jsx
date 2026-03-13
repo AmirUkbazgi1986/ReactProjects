@@ -5,7 +5,7 @@ function Navbar() {
   const { user, logout, setMode } = useAuth();
   return (
     <nav className="bg-[#fff] py-4 px-0 sticky top-0 z-100">
-      <div className="max-w-[1200px]  my-0 mx-auto py-0 px-8 flex justify-between items-center flex-wrap gap-4">
+      <div className="max-w-[1200px]  my-0 mx-auto py-0 px-8 flex flex-col items-start md:flex-row md:justify-between md:items-center flex-wrap gap-4">
         <Link to="/" className="text-2xl font-bold text-[#333] no-underline">
           ShopHub
         </Link>

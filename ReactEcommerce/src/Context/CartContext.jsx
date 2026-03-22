@@ -9,7 +9,6 @@ function CartProvider({ children }) {
   // const navigate = useNavigate();
 
   function addToCart(productId) {
-    console.log(productId);
     const existing = cartItems.find((item) => item.id === productId);
     if (existing) {
       const currentQuantity = existing.quantity;

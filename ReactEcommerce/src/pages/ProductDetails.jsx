@@ -21,8 +21,8 @@ function ProductDetails() {
     return <h1>Loading ...</h1>;
   }
 
-  const productInCart = cartItems.find((item) => item.id === id);
-  console.log(productInCart, cartItems);
+  const productInCart = cartItems.find((item) => item.id === Number(id));
+
   const productQuantityLable = productInCart
     ? `(${productInCart.quantity}) `
     : null;
@@ -30,7 +30,7 @@ function ProductDetails() {
   return (
     <div className="flex-1 py-8 px-0">
       <div className="max-w-[1200px] my-0 mx-auto py-0 px-8">
-        <div className="grid grid-cols-2 gap-[3rem] bg-[#fff] py-8 px-8 rounded-lg shadow-[0 2px 8px rgba(0,0,0,0.1)]">
+        <div className="grid grid-cols-2 gap-[3rem] bg-[#fff] py-8 px-8 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
           <div className="w-full h-auto rounded-lg overflow-hidden ">
             <img src={product?.image} alt={product?.name} />
           </div>

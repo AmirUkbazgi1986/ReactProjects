@@ -27,7 +27,7 @@ function Navbar() {
           <div className="flex items-center gap-4">
             <NavLink
               to="/auth"
-              className="py-3 px-7 border-none rounded-sm text-base font-medium cursor-pointer transition- background-color duration-[0.2s] transform-[0.1s] no-underline inline-block  text-center bg-[#6c757d] hover:bg-[#545b62] text-[#fff]"
+              className="py-3 px-7 border-none rounded-sm text-base font-medium cursor-pointer transition-background-color duration-[0.2s] transform-[0.1s] no-underline inline-block  text-center bg-[#6c757d] hover:bg-[#545b62] text-[#fff]"
               onClick={() => setMode("login")}
             >
               Login

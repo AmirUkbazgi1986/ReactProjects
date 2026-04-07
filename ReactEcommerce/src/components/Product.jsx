@@ -8,7 +8,7 @@ function Product({ product }) {
     ? `(${productInCart.quantity}) `
     : null;
   return (
-    <div className="bg-[#fff] rounded-lg overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.1)]transition-transform duration-[0.2s] transition-shadow duration-[0.2s] hover:transform-[translateY(-4px)] hover: shadow-[0_4px_8px_rgba(0,0,0,0.15)]">
+    <div className="bg-[#fff] rounded-lg overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-transform duration-[0.2s] transition-shadow duration-[0.2s] hover:transform-[translateY(-4px)] hover: shadow-[0_4px_8px_rgba(0,0,0,0.15)]">
       <img
         src={product.image}
         alt={product.name}
@@ -22,7 +22,7 @@ function Product({ product }) {
         <div className="flex gap-2">
           <Link
             to={`/product/${product.id}`}
-            className="py-3 px-7 border-none rounded-sm text-base font-medium cursor-pointer transition- background-color duration-[0.2s] transform-[0.1s] no-underline inline-block  text-center bg-[#6c757d] hover:bg-[#545b62] text-[#fff]"
+            className="py-3 px-7 border-none rounded-sm text-base font-medium cursor-pointer transition-background-color duration-[0.2s] transform-[0.1s] no-underline inline-block  text-center bg-[#6c757d] hover:bg-[#545b62] text-[#fff]"
           >
             View Details
           </Link>

@@ -53,7 +53,7 @@ function Auth() {
                 id="email"
                 name="email"
                 {...register("email", { required: "Email is required" })}
-                className="w-full py-3 px-3  border border-[#ddd]  rounded-sm text-base transition-[border-color] duration-[0.2s] focus:border-[#007bff] focus:outline-none "
+                className="w-full py-3 px-3  border border-[#ddd]  rounded-sm text-base transition-border-color duration-[0.2s] focus:border-[#007bff] focus:outline-none "
               />
               {errors.email && (
                 <span className="block text-[#dc3545] text-sm mt-1">

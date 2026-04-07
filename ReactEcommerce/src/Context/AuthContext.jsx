@@ -9,6 +9,7 @@ function AuthProvider({ children }) {
       : null,
   );
   const [mode, setMode] = useState("signup");
+
   function signUp(email, password) {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     if (users.find((u) => u.email === email)) {
